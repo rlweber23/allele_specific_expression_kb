@@ -1,0 +1,5 @@
+fastq_r1,fastq_r2,strain,subpool,plate,lane
+/share/crsp/lab/seyedam/weberrl/IGVF_allele_specific_expression/Allele_specific_expression_pipeline/pipeline_test/test_fastqs/nova1/Sublibrary_10_S9_L001_R1_001.fastq.gz,/share/crsp/lab/seyedam/weberrl/IGVF_allele_specific_expression/Allele_specific_expression_pipeline/pipeline_test/test_fastqs/nova1/Sublibrary_10_S9_L001_R2_001.fastq.gz,CAST_EiJ,Subpool_10,igvf_007,L001
+../test_fastqs/nova1/Sublibrary_10_S9_L002_R1_001.fastq.gz,../test_fastqs/nova1/Sublibrary_10_S9_L002_R2_001.fastq.gz,CAST_EiJ,Subpool_10,igvf_007,L001
+../test_fastqs/nova2/Sublibrary_10_S9_L001_R1_001.fastq.gz,../test_fastqs/nova2/Sublibrary_10_S9_L001_R2_001.fastq.gz,CAST_EiJ,Subpool_10,igvf_007,L001
+../test_fastqs/nova2/Sublibrary_10_S9_L002_R1_001.fastq.gz,../test_fastqs/nova2/Sublibrary_10_S9_L002_R2_001.fastq.gz,CAST_EiJ,Subpool_10,igvf_007,L001
