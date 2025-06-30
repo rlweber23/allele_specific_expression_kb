@@ -76,6 +76,7 @@ process make_adata {
 
 process cellbender {
   tag { total_adata.getName() }
+  publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
     path(total_adata)
