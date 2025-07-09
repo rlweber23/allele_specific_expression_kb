@@ -75,6 +75,11 @@ process make_adata {
 
 
 process cellbender {
+
+  errorStrategy { 
+    task.attempt <= 4 ? 'retry'  : 'ignore' 
+  }
+
   tag { total_adata.getName() }
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
@@ -82,7 +87,8 @@ process cellbender {
     path(total_adata)
 
   output:
-    path "${total_adata.getName()}_cellbender.h5", emit: cb_h5
+    path "${total_adata.getName()}_cellbender_filtered.h5", emit: cb_h5
+    path "${total_adata.getName()}_cellbender_report.html", emit: cb_report
 
   script:
   """
@@ -90,15 +96,11 @@ process cellbender {
         --input ${total_adata} \
         --output ${total_adata}_cellbender.h5 \
         --total-droplets-included 200000 \
-        --learning-rate 0.00005 \
+        --learning-rate 0.000025 \
         --expected-cells 67000 \
         --cuda
   """
 }
-
-
-
-
 
 
 workflow {
