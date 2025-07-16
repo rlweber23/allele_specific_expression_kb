@@ -103,6 +103,25 @@ process cellbender {
 }
 
 
+process cb_h5_to_h5ad {
+  tag { cb_h5.getName() }
+  publishDir { cb_h5.getParent() }, mode: 'copy'
+
+  input:
+    path cb_h5
+
+  output:
+    path "${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}", emit: cb_h5ad
+
+  script:
+  """
+  python ${params.cb_h5_to_h5ad_script} \
+    --input ${cb_h5} \
+    --output ${cb_h5.getName().replace('.h5', '.h5ad')}
+  """
+}
+
+
 workflow {
   //
   // 1) read & group in pure Groovy
@@ -134,7 +153,8 @@ workflow {
   // 3) downstream as before
   //
   total_adata = make_adata(subpool_dirs)
-  cellbender(total_adata)
+  cellbender_outputs = cellbender(total_adata)
+  cb_h5ad_files = cb_h5_to_h5ad(cellbender_outputs.cb_h5)
 }
 
 
