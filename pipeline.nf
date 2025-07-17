@@ -158,7 +158,7 @@ workflow {
   cellbender_outputs = cellbender(total_adata)
   cb_h5ad_files = cellbender_outputs
     .map { plate = it.cb_h5.getParentFile().getParentFile().getName(); strain = it.cb_h5.getParentFile().getName(); tuple(plate, strain, it.cb_h5) }
-    .into { cb_h5_to_h5ad(it) }
+    | cb_h5_to_h5ad
 }
 
 
