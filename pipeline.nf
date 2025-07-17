@@ -87,8 +87,11 @@ process cellbender {
     path(total_adata)
 
   output:
-    path "${total_adata.getName()}_cellbender_filtered.h5", emit: cb_h5
-    path "${total_adata.getName()}_cellbender_report.html", emit: cb_report
+    tuple val(plate), val(strain),
+        path("${total_adata.getName()}_cellbender_filtered.h5"),
+        path("${total_adata.getName()}_cellbender_report.html"),
+        emit: cb_outputs
+
 
   script:
   """
@@ -108,7 +111,8 @@ process cb_h5_to_h5ad {
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
-    tuple val(plate), val(strain), path(cb_h5)
+    tuple val(plate), val(strain), path(cb_h5), path(_)
+
 
   output:
     path "${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}", emit: cb_h5ad
@@ -154,8 +158,8 @@ workflow {
   //
   total_adata = make_adata(subpool_dirs)
   cellbender_outputs = cellbender(total_adata)
-  cb_h5ad_files = cellbender_outputs.cb_h5
-  cb_h5_to_h5ad(cb_h5ad_files)
+  cb_h5_to_h5ad(cellbender_outputs.cb_outputs)
+
 }
 
 
