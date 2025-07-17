@@ -105,9 +105,11 @@ process cellbender {
 
 process cb_h5_to_h5ad {
   tag { cb_h5.getName() }
-  publishDir { "." }, mode: 'copy'
+  publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
+    val plate
+    val strain
     path cb_h5
 
   output:
@@ -154,7 +156,9 @@ workflow {
   //
   total_adata = make_adata(subpool_dirs)
   cellbender_outputs = cellbender(total_adata)
-  cb_h5ad_files = cb_h5_to_h5ad(cellbender_outputs.cb_h5)
+  cb_h5ad_files = cellbender_outputs
+    .map { plate = it.cb_h5.getParentFile().getParentFile().getName(); strain = it.cb_h5.getParentFile().getName(); tuple(plate, strain, it.cb_h5) }
+    .into { cb_h5_to_h5ad(it) }
 }
 
 
