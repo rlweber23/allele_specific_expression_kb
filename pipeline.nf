@@ -117,7 +117,7 @@ process cb_h5_to_h5ad {
   """
   python ${params.cb_h5_to_h5ad_script} \
     --input ${cb_h5} \
-    --output ${cb_h5.getName().replaceFirst('.h5', '.h5ad')}
+    --output ${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}
   """
 }
 
