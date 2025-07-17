@@ -11,12 +11,11 @@ process kb_count {
   publishDir { "kb_count/${plate}/${strain}" }, mode: 'copy'
 
   input:
-    tuple val(strain), val(subpool), val(plate),
-          val(pairs)
+    tuple val(strain), val(subpool), val(plate), val(pairs)
 
 
   output:
-    path "${subpool}", emit: subpool_dir
+    tuple val(strain), val(subpool), val(plate), path("${subpool}"), emit: subpool_dir
 
   script:
   """
@@ -57,13 +56,13 @@ process kb_count {
 
 
 process make_adata {
-  tag { subpool_dir.getName() }
+  tag { subpool_dir[3].getName() }
 
   input:
-    path subpool_dir
+    tuple val(strain), val(subpool), val(plate), path(subpool_dir)
 
   output:
-    path "${subpool_dir.getName()}.h5ad", emit: h5ad
+    tuple val(strain), val(subpool), val(plate), path("${subpool_dir.getName()}.h5ad"), emit: h5ad
 
   script:
   """
@@ -80,17 +79,17 @@ process cellbender {
     task.attempt <= 4 ? 'retry'  : 'ignore' 
   }
 
-  tag { total_adata.getName() }
+  tag { total_adata[3].getName() }
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
-    path(total_adata)
+    tuple val(strain), val(subpool), val(plate), path(total_adata)
 
   output:
-    tuple val(plate), val(strain),
-        path("${total_adata.getName()}_cellbender_filtered.h5"),
-        path("${total_adata.getName()}_cellbender_report.html"),
-        emit: cb_outputs
+    tuple val(strain), val(subpool), val(plate),
+      path("${total_adata.getName()}_cellbender_filtered.h5"),
+      path("${total_adata.getName()}_cellbender_report.html"),
+      emit: cb_outputs
 
 
   script:
@@ -111,11 +110,12 @@ process cb_h5_to_h5ad {
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
-    tuple val(plate), val(strain), path(cb_h5), path(_)
+    tuple val(strain), val(subpool), val(plate), path(cb_h5), path(_)
 
 
   output:
-    path "${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}", emit: cb_h5ad
+    tuple val(strain), val(subpool), val(plate),
+      path("${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}"), emit: cb_h5ad
 
   script:
   """
@@ -151,7 +151,7 @@ workflow {
   //
   // 2) one kb_count run per tuple, with real file paths
   //
-  subpool_dirs = kb_count(config_ch).subpool_dir
+  subpool_dirs = kb_count(config_ch)
 
   //
   // 3) downstream as before
