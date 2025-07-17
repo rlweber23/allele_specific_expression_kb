@@ -108,9 +108,7 @@ process cb_h5_to_h5ad {
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
-    val plate
-    val strain
-    path cb_h5
+    tuple val(plate), val(strain), path(cb_h5)
 
   output:
     path "${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}", emit: cb_h5ad
@@ -122,7 +120,6 @@ process cb_h5_to_h5ad {
     --output ${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}
   """
 }
-
 
 
 workflow {
