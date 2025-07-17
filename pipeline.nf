@@ -105,7 +105,7 @@ process cellbender {
 
 process cb_h5_to_h5ad {
   tag { cb_h5.getName() }
-  publishDir { cb_h5.getParent() }, mode: 'copy'
+  publishDir { "." }, mode: 'copy'
 
   input:
     path cb_h5
