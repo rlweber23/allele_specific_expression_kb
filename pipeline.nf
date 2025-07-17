@@ -155,12 +155,7 @@ workflow {
   total_adata = make_adata(subpool_dirs)
   cellbender_outputs = cellbender(total_adata)
   cb_h5ad_files = cellbender_outputs.cb_h5
-  .map { cb_h5 ->
-    def plate = cb_h5.getParentFile().getParentFile().getName()
-    def strain = cb_h5.getParentFile().getName()
-    tuple(plate, strain, cb_h5)
-  }
-  | cb_h5_to_h5ad
+  cb_h5_to_h5ad(cb_h5ad_files)
 }
 
 
