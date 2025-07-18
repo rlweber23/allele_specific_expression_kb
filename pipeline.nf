@@ -56,7 +56,6 @@ process kb_count {
 
 
 process make_adata {
-  tag { subpool_dir[3].getName() }
 
   input:
     tuple val(strain), val(subpool), val(plate), path(subpool_dir)
