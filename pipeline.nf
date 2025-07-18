@@ -78,7 +78,6 @@ process cellbender {
     task.attempt <= 4 ? 'retry'  : 'ignore' 
   }
 
-  tag { total_adata[3].getName() }
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
@@ -105,7 +104,6 @@ process cellbender {
 
 
 process cb_h5_to_h5ad {
-  tag { cb_h5.getName() }
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
 
   input:
