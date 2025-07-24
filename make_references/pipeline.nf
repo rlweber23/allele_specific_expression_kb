@@ -46,7 +46,7 @@ process remove_chr_fasta {
 
   script:
   """
-  zcat "${fasta_file}" | sed 's/chr//g' > "${fasta_file.simpleName}.noCHR.fasta"
+  sed 's/chr//g' "${fasta_file}" > "${fasta_file.simpleName}.noCHR.fasta"
   """
 }
 
@@ -69,12 +69,33 @@ process download_igvf_gtf {
 
 
 
+process remove_chr_gtf {
+  publishDir "references/", mode: 'copy'
+
+  input:
+    path gtf_file
+
+  output:
+    path "${params.gtf_IGVF_acession}.noCHR.gtf"
+
+  when:
+      !file("${params.topDir}/references/${params.gtf_IGVF_acession}.noCHR.gtf").exists()
+
+  script:
+  """
+  sed 's/^chr\|%$//g' "${gtf_file}" > "${gtf_file.simpleName}.noCHR.gtf"
+  """
+}
+
+
+
 workflow {
   curl_vcf()
 
   fasta_file = download_igvf_fasta()
   remove_chr_fasta(fasta_file)
   
-  download_igvf_gtf()
+  gtf_file = download_igvf_gtf()
+  remove_chr_gtf(gtf_file)
 }
 
