@@ -36,10 +36,10 @@ process download_igvf_gtf {
   publishDir "references/", mode: 'copy'
 
   when:
-    !file("references/${params.gtf_IGVF_acession}.fasta.gz").exists()
+    !file("references/${params.gtf_IGVF_acession}.gtf.gz").exists()
 
   output:
-    path "${params.gtf_IGVF_acession}.fasta.gz"
+    path "${params.gtf_IGVF_acession}.gtf.gz"
 
   script:
   """
