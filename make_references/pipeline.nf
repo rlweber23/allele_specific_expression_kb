@@ -27,7 +27,7 @@ process download_igvf_fasta {
 
   script:
   """
-  python ${params.download_igvf_portal} --acc ${params.fasta_IGVF_acession} --outdir ${params.topDir}/references
+  python ${params.download_igvf_portal} --acc ${params.fasta_IGVF_acession} 
   """
 }
 
@@ -43,7 +43,7 @@ process download_igvf_gtf {
 
   script:
   """
-  python ${params.download_igvf_portal} --acc ${params.gtf_IGVF_acession} --outdir ${params.topDir}/references
+  python ${params.download_igvf_portal} --acc ${params.gtf_IGVF_acession} 
   """
 }
 
