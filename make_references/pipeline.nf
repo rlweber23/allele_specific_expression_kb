@@ -32,6 +32,26 @@ process download_igvf_fasta {
 }
 
 
+process remove_chr_fasta {
+  publishDir "references/", mode: 'copy'
+
+  input:
+    path "${params.fasta_IGVF_acession}.fasta.gz"
+
+  when:
+    !file("references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
+
+  output:
+    path "${params.fasta_IGVF_acession}.noCHR.fasta"
+
+  script:
+  """
+  zcat "${params.fasta_IGVF_acession}.fasta.gz" | sed 's/chr//g' > "${params.fasta_IGVF_acession}.noCHR.fasta"
+  """
+}
+
+
+
 process download_igvf_gtf {
   publishDir "references/", mode: 'copy'
 
@@ -51,7 +71,10 @@ process download_igvf_gtf {
 
 workflow {
   curl_vcf()
-  download_igvf_fasta()
+
+  fasta_file = download_igvf_fasta()
+  remove_chr_fasta(fasta_file)
+  
   download_igvf_gtf()
 }
 
