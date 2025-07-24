@@ -42,7 +42,7 @@ process remove_chr_fasta {
     path "${fasta_file.simpleName}.noCHR.fasta"
 
   when:
-    !file("references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
+      !file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
 
   script:
   """
