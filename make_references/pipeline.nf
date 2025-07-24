@@ -16,7 +16,42 @@ process curl_vcf {
   """
 }
 
+process download_igvf_fasta {
+  publishDir "references/", mode: 'copy'
+
+  when:
+    !file("references/${params.fasta_IGVF_acession}.fasta.gz").exists()
+
+  output:
+    path "${params.fasta_IGVF_acession}.fasta.gz"
+
+  script:
+  """
+  python download_from_igvf.py --acc ${params.fasta_IGVF_acession} --outdir ${params.topDir}/references
+  """
+}
+
+
+process download_igvf_gtf {
+  publishDir "references/", mode: 'copy'
+
+  when:
+    !file("references/${params.gtf_IGVF_acession}.fasta.gz").exists()
+
+  output:
+    path "${params.gtf_IGVF_acession}.fasta.gz"
+
+  script:
+  """
+  python download_from_igvf.py --acc ${params.gtf_IGVF_acession} --outdir ${params.topDir}/references
+  """
+}
+
+
+
 workflow {
   curl_vcf()
+  download_igvf_fasta()
+  download_igvf_gtf()
 }
 
