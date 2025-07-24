@@ -36,17 +36,17 @@ process remove_chr_fasta {
   publishDir "references/", mode: 'copy'
 
   input:
-    path "${params.fasta_IGVF_acession}.fasta.gz"
+    path fasta_file
+
+  output:
+    path "${fasta_file.simpleName}.noCHR.fasta"
 
   when:
     !file("references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
 
-  output:
-    path "${params.fasta_IGVF_acession}.noCHR.fasta"
-
   script:
   """
-  zcat "${params.fasta_IGVF_acession}.fasta.gz" | sed 's/chr//g' > "${params.fasta_IGVF_acession}.noCHR.fasta"
+  zcat "${fasta_file}" | sed 's/chr//g' > "${fasta_file.simpleName}.noCHR.fasta"
   """
 }
 
