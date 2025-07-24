@@ -41,11 +41,8 @@ process remove_chr_fasta {
   output:
     path "${fasta_file.simpleName}.noCHR.fasta"
 
-  when: {
-    def target = file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta")
-    println "🔍 Checking if file exists: ${target} --> ${target.exists()}"
-    !target.exists()
-  }
+  when:
+      !file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
 
   script:
   """
