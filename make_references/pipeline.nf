@@ -83,7 +83,7 @@ process remove_chr_gtf {
 
   script:
   """
-  sed 's/^chr\|%$//g' "${gtf_file}" > "${gtf_file.simpleName}.noCHR.gtf"
+  sed 's/chr//g' "${gtf_file}" > "${gtf_file.simpleName}.noCHR.gtf"
   """
 }
 
