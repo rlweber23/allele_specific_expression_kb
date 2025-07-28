@@ -46,7 +46,7 @@ process kb_count {
     -x SPLIT-SEQ \
     -i ${params.kb_index}/${strain}/index.idx \
     -t 4 \
-    --tmp ${strain}_${plate}_${subpool} \
+    --tmp ${strain}_${plate}_${subpool}/ \
     -c1 ${params.kb_index}/${strain}/c1.c1 \
     -c2 ${params.kb_index}/${strain}/c2.c2 \
     -o ${subpool} \
