@@ -75,7 +75,7 @@ process make_adata {
 process cellbender {
 
   errorStrategy { 
-    task.attempt <= 4 ? 'retry'  : 'ignore' 
+    task.attempt <= 6 ? 'retry'  : 'ignore' 
   }
 
   publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
