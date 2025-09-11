@@ -99,6 +99,7 @@ process vcf2vci{
   
   output:
     path "${strain}.vci.gz"
+    path "${strain}.vci.gz.tbi"
 
   script:
   """
@@ -113,7 +114,8 @@ process patch_fasta{
     
   input:
     path fasta                  
-    path vci                    
+    path vci
+    path vci_index                    
   
   output:
     path "mm39.${strain}.patch.fa"
@@ -151,7 +153,8 @@ workflow {
 
   fasta_patch = patch_fasta(
     fasta_nchr_ch,
-    vci
+    vci,
+    vci_index
   )
 }
 
