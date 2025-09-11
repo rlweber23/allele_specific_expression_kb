@@ -121,6 +121,9 @@ process patch_fasta{
   
   output:
     path "mm39.${strain}.patch.fa"
+    path vci
+    path vci_index
+    val strain
 
   script:
   """
@@ -131,6 +134,30 @@ process patch_fasta{
 
 
 }
+
+
+process transform_fasta{
+  storeDir "references/"
+    
+  input:
+    path patch_fasta                  
+    path vci
+    path vci_index
+    val strain                   
+  
+  output:
+    path "mm39.${strain}.unnamed.fa"
+
+  script:
+  """
+
+  g2gtools transform -p 1 -i ${patch_fasta} -c ${vci} -o mm39.${strain}.unnamed.fa
+
+  """
+
+
+}
+
 
 
 workflow {
@@ -155,6 +182,9 @@ workflow {
   fasta_patch = patch_fasta(
     fasta_nchr_ch,
     vci
+  )
+  fasta_transform = transform_fasta(
+    fasta_patch
   )
 }
 
