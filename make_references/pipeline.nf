@@ -147,12 +147,31 @@ process transform_fasta{
   
   output:
     path "mm39.${strain}.unnamed.fa"
+    val strain
 
   script:
   """
   g2gtools transform -p 1 -i ${patch_fasta} -c ${vci} -o mm39.${strain}.unnamed.fa
   """
 }
+
+
+process rename_fasta{
+  storeDir "references/"
+    
+  input:
+    path unnamed_fasta
+    val strain
+  
+  output:
+
+  script:
+  """
+  sed "s/^>/>${strain}_/" ${unnamed_fasta} > mm39.${strain}.fa
+  """
+}
+
+
 
 
 process convert_gtf{
@@ -199,6 +218,7 @@ workflow {
     vci
   )
   fasta_transform = transform_fasta(fasta_patch)
+  fasta_rename = rename_fasta(fasta_transform)
 
   gtf_convert = convert_gtf(
     gtf_nochr_ch,
