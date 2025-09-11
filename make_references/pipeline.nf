@@ -19,11 +19,11 @@ process curl_vcf {
 process download_igvf_fasta {
   storeDir "references/"
 
-  when:
-    !file("references/${params.fasta_IGVF_acession}.fasta.gz").exists()
+  //when:
+  //  !file("references/${params.fasta_IGVF_acession}.fasta.gz").exists()
 
-  //output:
-  //  path "${params.fasta_IGVF_acession}.fasta.gz"
+  output:
+    path "${params.fasta_IGVF_acession}.fasta.gz"
 
   script:
   """
