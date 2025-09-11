@@ -98,7 +98,7 @@ process vcf2vci{
 
   
   output:
-    path "${strain}.vci"
+    path "${strain}.vci.gz"
 
   script:
   """
