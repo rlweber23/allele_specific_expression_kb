@@ -91,7 +91,7 @@ process remove_chr_gtf {
 process vcf2vci{
   storeDir "references/"
 
-    input:
+  input:
     each strain                 // fan-out dimension
     path vcf_file               // singleton
     path fasta_file_nchr        // singleton
@@ -108,6 +108,26 @@ process vcf2vci{
 
 }
 
+process patch_fasta{
+  storeDir "references/"
+    
+  input:
+    path fasta                  // singleton
+    path vci                    // from vcf2vci
+  
+  output:
+    path "mm39.${strain}.patch.fa"
+
+  script:
+  """
+    strain=$(basename "${vcf}" .vci.gz)
+
+    g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
+
+  """
+
+
+}
 
 
 workflow {
@@ -115,18 +135,23 @@ workflow {
   vcf_ch        = curl_vcf()
   fasta_gz_ch   = download_igvf_fasta()
   fasta_nchr_ch = remove_chr_fasta(fasta_gz_ch)
+  
+  // GTF 
+  gtf_gz_ch   = download_igvf_gtf()
+  gtf_nochr_ch= remove_chr_gtf(gtf_gz_ch)
 
-  // Per-strain fan-out
+  // Per-strain fan out
   strains_ch = Channel.of(params.strains).flatten()
 
-  vcf2vci(
+  vci = vcf2vci(
     strains_ch,        // `each strain`
     vcf_ch,            // singleton VCF
     fasta_nchr_ch      // singleton FASTA (no chr)
   )
 
-  // GTF side chain
-  gtf_gz_ch   = download_igvf_gtf()
-  gtf_nochr_ch= remove_chr_gtf(gtf_gz_ch)
+  fasta_patch = patch_fasta(
+    fasta_nchr_ch,
+    vci
+  )
 }
 
