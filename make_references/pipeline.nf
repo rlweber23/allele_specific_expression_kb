@@ -119,8 +119,8 @@ process patch_fasta{
     path "mm39.${strain}.patch.fa"
 
   script:
+  def strain = vci.baseName.replaceFirst(/\\.vci$/, '')
   """
-    strain=$(basename "${vci}" .vci.gz)
 
     g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
 
