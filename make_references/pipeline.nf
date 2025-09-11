@@ -100,6 +100,7 @@ process vcf2vci{
   output:
     path "${strain}.vci.gz"
     path "${strain}.vci.gz.tbi"
+    val strain
 
   script:
   """
@@ -115,13 +116,13 @@ process patch_fasta{
   input:
     path fasta                  
     path vci
-    path vci_index                    
+    path vci_index
+    val strain                   
   
   output:
     path "mm39.${strain}.patch.fa"
 
   script:
-  def strain = vci.baseName.replaceFirst(/\\.vci$/, '')
   """
 
     g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
