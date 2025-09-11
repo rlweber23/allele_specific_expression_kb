@@ -94,7 +94,7 @@ process vcf2vci{
   input:
     path vcf_file
     path fasta_file_nchr
-    val strain
+    each strain
   
   output:
     path "${strain}.vci"
@@ -110,11 +110,16 @@ process vcf2vci{
 
 
 workflow {
+  strain_channel = Channel.of(params.strains)
+
+
   vcf_file = curl_vcf()
 
   fasta_file = download_igvf_fasta()
   fasta_file_nchr = remove_chr_fasta(fasta_file)
-  vcf2vci(vcf_file, fasta=fasta_file_nchr, strain=strain) for strain in params.strains
+
+  vcf2vci(vcf_file, fasta=fasta_file_nchr, strain_channel)
+  
   gtf_file = download_igvf_gtf()
   gtf_file_no_chr = remove_chr_gtf(gtf_file)
 }
