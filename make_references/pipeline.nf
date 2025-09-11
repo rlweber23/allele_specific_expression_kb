@@ -102,7 +102,7 @@ process vcf2vci{
 
   script:
   """
-    g2gtools vcf2vci -p 1 -i ${vcf_file} -o ${strain}.vci.gz -s ${strain} -f ${fasta_file_nchr}
+    g2gtools vcf2vci -p 1 -i ${vcf_file} -o ${strain}.vci -s ${strain} -f ${fasta_file_nchr}
 
   """
 
