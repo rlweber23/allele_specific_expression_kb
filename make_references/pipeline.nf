@@ -120,7 +120,7 @@ process patch_fasta{
 
   script:
   """
-    strain=$(basename "${vcf}" .vci.gz)
+    strain=\$(basename "${vcf}" .vci.gz)
 
     g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
 
