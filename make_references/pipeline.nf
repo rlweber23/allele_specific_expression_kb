@@ -2,10 +2,10 @@
 nextflow.enable.dsl=2
 
 process curl_vcf {
-  publishDir "references/", mode: 'copy'
+  storeDir "references/"
 
-  when:
-    !file("references/${ params.mouse_vcf.split('/')[-1] }").exists()
+  //when:
+  //  !file("references/${ params.mouse_vcf.split('/')[-1] }").exists()
 
   output:
     path "${ params.mouse_vcf.split('/')[-1] }"
@@ -17,13 +17,13 @@ process curl_vcf {
 }
 
 process download_igvf_fasta {
-  publishDir "references/", mode: 'copy'
+  storeDir "references/"
 
   when:
     !file("references/${params.fasta_IGVF_acession}.fasta.gz").exists()
 
-  output:
-    path "${params.fasta_IGVF_acession}.fasta.gz"
+  //output:
+  //  path "${params.fasta_IGVF_acession}.fasta.gz"
 
   script:
   """
@@ -33,7 +33,7 @@ process download_igvf_fasta {
 
 
 process remove_chr_fasta {
-  publishDir "references/", mode: 'copy'
+  storeDir "references/"
 
   input:
     path fasta_file
@@ -41,8 +41,8 @@ process remove_chr_fasta {
   output:
     path "${fasta_file.simpleName}.noCHR.fasta"
 
-  when:
-      !file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
+  //when:
+  //    !file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
 
   script:
   """
@@ -53,10 +53,10 @@ process remove_chr_fasta {
 
 
 process download_igvf_gtf {
-  publishDir "references/", mode: 'copy'
+  storeDir "references/"
 
-  when:
-    !file("references/${params.gtf_IGVF_acession}.gtf.gz").exists()
+  //when:
+  //  !file("references/${params.gtf_IGVF_acession}.gtf.gz").exists()
 
   output:
     path "${params.gtf_IGVF_acession}.gtf.gz"
@@ -70,7 +70,7 @@ process download_igvf_gtf {
 
 
 process remove_chr_gtf {
-  publishDir "references/", mode: 'copy'
+  storeDir "references/"
 
   input:
     path gtf_file
@@ -78,8 +78,8 @@ process remove_chr_gtf {
   output:
     path "${params.gtf_IGVF_acession}.noCHR.gtf"
 
-  when:
-      !file("${params.topDir}/references/${params.gtf_IGVF_acession}.noCHR.gtf").exists()
+  //when:
+    //  !file("${params.topDir}/references/${params.gtf_IGVF_acession}.noCHR.gtf").exists()
 
   script:
   """
