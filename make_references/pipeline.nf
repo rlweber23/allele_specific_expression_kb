@@ -89,7 +89,7 @@ process remove_chr_gtf {
 
 
 process vcf2vci{
-  storeDir "references/", mode: 'copy'
+  storeDir "references/"
 
     input:
     each strain                 // fan-out dimension
