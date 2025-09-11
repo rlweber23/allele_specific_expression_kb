@@ -165,7 +165,7 @@ process convert_gtf{
     val strain
   
   output:
-    path mm39.${strain}.unnamed.gtf
+    path "mm39.${strain}.unnamed.gtf"
   
   script:
   """
