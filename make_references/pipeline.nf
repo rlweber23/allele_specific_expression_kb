@@ -88,14 +88,34 @@ process remove_chr_gtf {
 }
 
 
+process vcf2vci{
+  publishDir "references/", mode: 'copy'
+
+  input:
+    path vcf_file
+    path fasta_file_nchr
+    val strain
+  
+  output:
+    path "${strain}.vci"
+
+  script:
+  """
+    g2gtools vcf2vci -p 1 -i ${vcf_file} -o ${strain}.vci -s ${strain} -f ${fasta_file_nchr}
+
+  """
+
+}
+
+
 
 workflow {
-  curl_vcf()
+  vcf_file = curl_vcf()
 
   fasta_file = download_igvf_fasta()
-  remove_chr_fasta(fasta_file)
-  
+  fasta_file_nchr = remove_chr_fasta(fasta_file)
+  vcf2vci(vcf_file, fasta=fasta_file_nchr, strain=strain) for strain in params.strains
   gtf_file = download_igvf_gtf()
-  remove_chr_gtf(gtf_file)
+  gtf_file_no_chr = remove_chr_gtf(gtf_file)
 }
 
