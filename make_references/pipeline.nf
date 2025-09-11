@@ -150,12 +150,27 @@ process transform_fasta{
 
   script:
   """
-
   g2gtools transform -p 1 -i ${patch_fasta} -c ${vci} -o mm39.${strain}.unnamed.fa
-
   """
+}
 
 
+process convert_gtf{
+  storeDir "references/"
+    
+  input:
+    path gtf                  
+    path vci
+    path vci_index
+    val strain
+  
+  output:
+    mm39.${strain}.unnamed.gtf
+  
+  script:
+  """
+  g2gtools convert -c ${vci} -i ${gtf} -o mm39.${strain}.unnamed.gtf
+  """
 }
 
 
@@ -174,17 +189,23 @@ workflow {
   strains_ch = Channel.of(params.strains).flatten()
 
   vci = vcf2vci(
-    strains_ch,        // `each strain`
-    vcf_ch,            // singleton VCF
-    fasta_nchr_ch      // singleton FASTA (no chr)
+    strains_ch,        
+    vcf_ch,            
+    fasta_nchr_ch      
   )
 
   fasta_patch = patch_fasta(
     fasta_nchr_ch,
     vci
   )
-  fasta_transform = transform_fasta(
-    fasta_patch
+  fasta_transform = transform_fasta(fasta_patch)
+
+  gtf_convert = convert_gtf(
+    gtf_nochr_ch,
+    vci
   )
+
+
+
 }
 
