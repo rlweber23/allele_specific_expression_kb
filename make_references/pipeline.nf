@@ -46,7 +46,7 @@ process remove_chr_fasta {
 
   script:
   """
-  sed 's/chr//g' "${fasta_file}" > "${fasta_file.simpleName}.noCHR.fasta"
+  zcat "${fasta_file}" | sed 's/chr//g' > "${fasta_file.simpleName}.noCHR.fasta"
   """
 }
 
@@ -83,7 +83,7 @@ process remove_chr_gtf {
 
   script:
   """
-  sed 's/chr//g' "${gtf_file}" > "${gtf_file.simpleName}.noCHR.gtf"
+  zcat "${gtf_file}" | sed 's/chr//g'  > "${gtf_file.simpleName}.noCHR.gtf"
   """
 }
 
