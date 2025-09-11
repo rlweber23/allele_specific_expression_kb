@@ -153,8 +153,7 @@ workflow {
 
   fasta_patch = patch_fasta(
     fasta_nchr_ch,
-    vci,
-    vci_index
+    vci
   )
 }
 
