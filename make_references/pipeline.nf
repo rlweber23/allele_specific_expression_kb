@@ -112,15 +112,15 @@ process patch_fasta{
   storeDir "references/"
     
   input:
-    path fasta                  // singleton
-    path vci                    // from vcf2vci
+    path fasta                  
+    path vci                    
   
   output:
     path "mm39.${strain}.patch.fa"
 
   script:
   """
-    strain=$(basename "${vcf}" .vci.gz)
+    strain=$(basename "${vci}" .vci.gz)
 
     g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
 
