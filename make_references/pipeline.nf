@@ -91,10 +91,11 @@ process remove_chr_gtf {
 process vcf2vci{
   publishDir "references/", mode: 'copy'
 
-  input:
-    path vcf_file
-    path fasta_file_nchr
-    each strain
+    input:
+    each strain                 // fan-out dimension
+    path vcf_file               // singleton
+    path fasta_file_nchr        // singleton
+
   
   output:
     path "${strain}.vci"
@@ -110,17 +111,22 @@ process vcf2vci{
 
 
 workflow {
-  strain_channel = Channel.of(params.strains)
+  // Fetch inputs
+  vcf_ch        = curl_vcf()
+  fasta_gz_ch   = download_igvf_fasta()
+  fasta_nchr_ch = remove_chr_fasta(fasta_gz_ch)
 
+  // Per-strain fan-out
+  strains_ch = Channel.of(params.strains).flatten()
 
-  vcf_file = curl_vcf()
+  vcf2vci(
+    strains_ch,        // `each strain`
+    vcf_ch,            // singleton VCF
+    fasta_nchr_ch      // singleton FASTA (no chr)
+  )
 
-  fasta_file = download_igvf_fasta()
-  fasta_file_nchr = remove_chr_fasta(fasta_file)
-
-  vcf2vci(vcf_file, fasta=fasta_file_nchr, strain_channel)
-  
-  gtf_file = download_igvf_gtf()
-  gtf_file_no_chr = remove_chr_gtf(gtf_file)
+  // GTF side chain
+  gtf_gz_ch   = download_igvf_gtf()
+  gtf_nochr_ch= remove_chr_gtf(gtf_gz_ch)
 }
 
