@@ -303,12 +303,13 @@ workflow make_references {
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
 }
+
 workflow make_index {
   take:
     references_ch
 
   main:
-    if params.readType == 'RNA' {
+    if (params.readType == 'RNA') {
       kb_index(
         fasta_cat,
         gtf_cat
