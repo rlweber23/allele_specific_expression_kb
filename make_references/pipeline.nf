@@ -231,11 +231,41 @@ process cat_gtfs{
 
   output:
     path "mm39_B6J_${strain}_gtf.gtf"
+    val strain
 
   script:
   """
     cat ${gtf} mm39.${strain}.gtf > mm39_B6J_${strain}_gtf.gtf
   """
+
+
+process kb_index{
+  storeDir "references/${strain}/kb_index/"
+    
+  input: 
+    path fasta                  
+    path gtf
+    val strain
+
+  output:
+    path 
+
+  script:
+  """
+    kb ref \
+        --workflow=nac \
+        -i index.idx \
+        -g t2g.t2g \
+        -c1 c1.c1 \
+        -c2 c2.c2 \
+        -f1 fasta.fa \
+        -f2 output.na \
+        --tmp ${strain}tmp \
+        ${fasta} \
+        ${gtf}
+  """
+
+
 }
 
 
@@ -275,8 +305,22 @@ workflow make_references {
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
 }
+workflow make_index {
+  take:
+    references_ch
 
+  main:
+    if params.readType == 'RNA' {
+      kb_index(
+        fasta_cat,
+        gtf_cat
+      )
+    } else {
+      error "ATAC currentlt unsupported"
+    }
+}
 
 workflow{
-  refs = make_references()
+  references_ch = make_references()
+  make_index(references_ch)
 }
