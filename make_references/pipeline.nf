@@ -306,14 +306,20 @@ workflow make_references {
     vci
   )
   gtf_rename = rename_gtf(gtf_convert)
-
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
+
+  emit:
+    fasta_out = fasta_cat
+    gtf_out   = gtf_cat
+
 
 }
 
 workflow make_index {
   take:
-    references_ch
+    fasta_ch
+    gtf_ch
+
 
   main:
     if (params.readType == 'RNA') {
@@ -327,6 +333,9 @@ workflow make_index {
 }
 
 workflow {
-  references_ch = make_references()
-  make_index(references_ch)
+  refs = make_references()
+  make_index(
+    refs.fasta_out,
+    refs.gtf_out
+  )
 }
