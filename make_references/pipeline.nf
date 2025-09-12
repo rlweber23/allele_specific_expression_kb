@@ -194,14 +194,7 @@ process rename_gtf{
   
   script:
   """
-  set -euo pipefail
-
-  sed -E \
-    -e 's|ENSMUS|'"${strain}"'_ENSMUS|g' \
-    -e '/^#/! s|^|'"${strain}"'_|' \
-    -e 's|gene_name "([^"]+)"|gene_name "'"${strain}"'_\\1"|g' \
-    -e 's|transcript_name "([^"]+)"|transcript_name "'"${strain}"'_\\1"|g' \
-    "${unnamed_gtf}" > "mm39.${strain}.gtf"
+  sed "s/ENSMUS/${strain}_ENSMUS/g" ${unnamed_gtf} | sed "s/gene_name \"/gene_name \"${strain}_/" | sed "s/transcript_name \"/transcript_name \"${strain}_/" | sed "/^#/! s/^/${strain}_/" > mm39.${strain}.gtf
   """
 }
 
