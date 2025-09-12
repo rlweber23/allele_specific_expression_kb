@@ -314,11 +314,11 @@ workflow make_index {
         gtf_cat
       )
     } else {
-      error "ATAC currentlt unsupported"
+      error "ATAC currently unsupported"
     }
 }
 
-workflow{
+workflow {
   references_ch = make_references()
   make_index(references_ch)
 }
