@@ -194,10 +194,10 @@ process rename_gtf{
   
   script:
   """
-  sed -E -e 's/ENSMUS/'"${strain}"'_ENSMUS/g' //
-  // -e 's/gene_name "([^"]+)"/gene_name "'"${strain}"'_\\1"/g' //
-  // -e 's/transcript_name "([^"]+)"/transcript_name "'"${strain}"'_\\1"/g' //
-  // -e '/^#/! s/^/'"${strain}"'_/' "${unnamed_gtf}" > "mm39.${strain}.gtf"
+  sed -E -e 's/ENSMUS/'"${strain}"'_ENSMUS/g' ///
+   -e 's/gene_name "([^"]+)"/gene_name "'"${strain}"'_\\1"/g' ///
+   -e 's/transcript_name "([^"]+)"/transcript_name "'"${strain}"'_\\1"/g' ///
+   -e '/^#/! s/^/'"${strain}"'_/' "${unnamed_gtf}" > "mm39.${strain}.gtf"
   """
 }
 
