@@ -151,6 +151,7 @@ process rename_fasta{
   
   output:
     path "mm39.${strain}.fa"
+    val strain
 
   script:
   """
@@ -210,6 +211,7 @@ process rename_gtf{
   
   output:
     path "mm39.${strain}.gtf"
+    val strain
   
   script:
   """
