@@ -1,6 +1,8 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
+// these processes download and prepare reference files
+
 process curl_vcf {
   storeDir "references/"
 
@@ -12,6 +14,7 @@ process curl_vcf {
     curl -O ${params.mouse_vcf}
   """
 }
+
 
 process download_igvf_fasta {
   storeDir "references/"
@@ -25,16 +28,17 @@ process download_igvf_fasta {
   """
 }
 
+// these processes create the strain 'personalized' fasta and gtf files
+// using g2gtools
 
 process remove_chr_fasta {
-  storeDir "references/"
+  storeDir "references/${strain}/"
 
   input:
     path fasta_file
 
   output:
     path "${fasta_file.simpleName}.noCHR.fasta"
-
 
   script:
   """
@@ -43,9 +47,8 @@ process remove_chr_fasta {
 }
 
 
-
 process download_igvf_gtf {
-  storeDir "references/"
+  storeDir "references/${strain}/"
 
   output:
     path "${params.gtf_IGVF_acession}.gtf.gz"
@@ -57,9 +60,8 @@ process download_igvf_gtf {
 }
 
 
-
 process remove_chr_gtf {
-  storeDir "references/"
+  storeDir "references/${strain}/"
 
   input:
     path gtf_file
@@ -75,14 +77,13 @@ process remove_chr_gtf {
 
 
 process vcf2vci{
-  storeDir "references/"
+  storeDir "references/${strain}/"
 
   input:
     each strain                 // fan-out dimension
     path vcf_file               // singleton
     path fasta_file_nchr        // singleton
 
-  
   output:
     path "${strain}.vci.gz"
     path "${strain}.vci.gz.tbi"
@@ -93,11 +94,11 @@ process vcf2vci{
     g2gtools vcf2vci -p 1 -i ${vcf_file} -o ${strain}.vci -s ${strain} -f ${fasta_file_nchr}
 
   """
-
 }
 
+
 process patch_fasta{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path fasta                  
@@ -117,13 +118,11 @@ process patch_fasta{
     g2gtools patch -p 1 -i ${fasta} -c ${vci} -o mm39.${strain}.patch.fa
 
   """
-
-
 }
 
 
 process transform_fasta{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path patch_fasta                  
@@ -143,7 +142,7 @@ process transform_fasta{
 
 
 process rename_fasta{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path unnamed_fasta
@@ -160,21 +159,17 @@ process rename_fasta{
 }
 
 
-
-
 process cat_fastas{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path fasta                  
     path renamed_fasta
     val strain
 
-  
   output:
     path "mm39_B6J_${strain}_genome.fa"
     
-
   script:
   """
     cat ${fasta} ${renamed_fasta} > mm39_B6J_${strain}_genome.fa
@@ -183,7 +178,7 @@ process cat_fastas{
 
 
 process convert_gtf{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path gtf                  
@@ -203,7 +198,7 @@ process convert_gtf{
 
 
 process rename_gtf{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input:
     path unnamed_gtf
@@ -224,8 +219,9 @@ process rename_gtf{
   """
 }
 
+
 process cat_gtfs{
-  storeDir "references/"
+  storeDir "references/${strain}/"
     
   input: 
     path gtf                  
@@ -240,8 +236,6 @@ process cat_gtfs{
     cat ${gtf} mm39.${strain}.gtf > mm39_B6J_${strain}_gtf.gtf
   """
 }
-
-
 
 
 workflow {
