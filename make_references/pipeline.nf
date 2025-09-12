@@ -237,7 +237,7 @@ process cat_gtfs{
   """
     cat ${gtf} mm39.${strain}.gtf > mm39_B6J_${strain}_gtf.gtf
   """
-
+}
 
 process kb_index{
   storeDir "references/${strain}/kb_index/"
@@ -264,8 +264,6 @@ process kb_index{
         ${fasta} \
         ${gtf}
   """
-
-
 }
 
 
