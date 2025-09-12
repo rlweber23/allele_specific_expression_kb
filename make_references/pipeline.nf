@@ -28,6 +28,19 @@ process download_igvf_fasta {
   """
 }
 
+
+process download_igvf_gtf {
+  storeDir "references/"
+
+  output:
+    path "${params.gtf_IGVF_acession}.gtf.gz"
+
+  script:
+  """
+    python ${params.download_igvf_portal} --acc ${params.gtf_IGVF_acession} 
+  """
+}
+
 // these processes create the strain 'personalized' fasta and gtf files
 // using g2gtools
 
@@ -43,19 +56,6 @@ process remove_chr_fasta {
   script:
   """
     zcat "${fasta_file}" | sed 's/chr//g' > "${fasta_file.simpleName}.noCHR.fasta"
-  """
-}
-
-
-process download_igvf_gtf {
-  storeDir "references/${strain}/"
-
-  output:
-    path "${params.gtf_IGVF_acession}.gtf.gz"
-
-  script:
-  """
-    python ${params.download_igvf_portal} --acc ${params.gtf_IGVF_acession} 
   """
 }
 
