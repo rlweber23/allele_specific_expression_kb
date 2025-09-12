@@ -239,7 +239,7 @@ process cat_gtfs{
 }
 
 
-workflow {
+workflow make_references {
   // Fetch inputs
   vcf_ch        = curl_vcf()
   fasta_gz_ch   = download_igvf_fasta()
@@ -276,3 +276,7 @@ workflow {
 
 }
 
+
+workflow{
+  refs = make_references()
+}
