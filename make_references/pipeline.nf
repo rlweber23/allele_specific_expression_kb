@@ -4,9 +4,6 @@ nextflow.enable.dsl=2
 process curl_vcf {
   storeDir "references/"
 
-  //when:
-  //  !file("references/${ params.mouse_vcf.split('/')[-1] }").exists()
-
   output:
     path "${ params.mouse_vcf.split('/')[-1] }"
 
@@ -18,9 +15,6 @@ process curl_vcf {
 
 process download_igvf_fasta {
   storeDir "references/"
-
-  //when:
-  //  !file("references/${params.fasta_IGVF_acession}.fasta.gz").exists()
 
   output:
     path "${params.fasta_IGVF_acession}.fasta.gz"
@@ -41,8 +35,6 @@ process remove_chr_fasta {
   output:
     path "${fasta_file.simpleName}.noCHR.fasta"
 
-  //when:
-  //    !file("${params.topDir}/references/${params.fasta_IGVF_acession}.noCHR.fasta").exists()
 
   script:
   """
@@ -54,9 +46,6 @@ process remove_chr_fasta {
 
 process download_igvf_gtf {
   storeDir "references/"
-
-  //when:
-  //  !file("references/${params.gtf_IGVF_acession}.gtf.gz").exists()
 
   output:
     path "${params.gtf_IGVF_acession}.gtf.gz"
@@ -77,9 +66,6 @@ process remove_chr_gtf {
 
   output:
     path "${params.gtf_IGVF_acession}.noCHR.gtf"
-
-  //when:
-    //  !file("${params.topDir}/references/${params.gtf_IGVF_acession}.noCHR.gtf").exists()
 
   script:
   """
@@ -164,6 +150,7 @@ process rename_fasta{
     val strain
   
   output:
+    path "mm39.${strain}.fa"
 
   script:
   """
@@ -185,12 +172,35 @@ process convert_gtf{
   
   output:
     path "mm39.${strain}.unnamed.gtf"
+    val strain
   
   script:
   """
   g2gtools convert -c ${vci} -i ${gtf} -o mm39.${strain}.unnamed.gtf
   """
 }
+
+
+
+process rename_gtf{
+  storeDir "references/"
+    
+  input:
+    path unnamed_gtf
+    val strain
+  
+  output:
+    path "mm39.${strain}.gtf"
+  
+  script:
+  """
+  sed "s/ENSMUS/${strain}_ENSMUS/g" ${unnamed_gtf} | \
+  sed "s/gene_name \"/gene_name \"${strain}_/" | \
+  sed "s/transcript_name \"/transcript_name \"${strain}_/" | \
+  sed "/^#/! s/^/${strain}_/" > mm39.${strain}.gtf
+  """
+}
+
 
 
 
@@ -224,6 +234,7 @@ workflow {
     gtf_nochr_ch,
     vci
   )
+  gtf_rename = rename_gtf(gtf_convert)
 
 
 
