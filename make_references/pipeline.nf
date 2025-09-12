@@ -41,8 +41,7 @@ process download_igvf_gtf {
   """
 }
 
-// these processes create the strain 'personalized' fasta and gtf files
-// using g2gtools
+// these processes remove 'chr' from the fasta and gtf files
 
 process remove_chr_fasta {
   storeDir "references/${strain}/"
@@ -67,7 +66,7 @@ process remove_chr_gtf {
     path gtf_file
 
   output:
-    path "${params.gtf_IGVF_acession}.noCHR.gtf"
+    path "${gtf_file.simpleName}.noCHR.gtf"
 
   script:
   """
@@ -75,6 +74,8 @@ process remove_chr_gtf {
   """
 }
 
+// these processes create the strain 'personalized' fasta and gtf files
+// using g2gtools
 
 process vcf2vci{
   storeDir "references/${strain}/"
