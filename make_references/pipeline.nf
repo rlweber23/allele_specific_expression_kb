@@ -44,7 +44,7 @@ process download_igvf_gtf {
 // these processes remove 'chr' from the fasta and gtf files
 
 process remove_chr_fasta {
-  storeDir "references/${strain}/"
+  storeDir "references/"
 
   input:
     path fasta_file
@@ -60,7 +60,7 @@ process remove_chr_fasta {
 
 
 process remove_chr_gtf {
-  storeDir "references/${strain}/"
+  storeDir "references/"
 
   input:
     path gtf_file
