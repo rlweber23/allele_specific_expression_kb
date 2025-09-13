@@ -231,7 +231,7 @@ process cat_gtfs{
 
   output:
     path "mm39_B6J_${strain}_gtf.gtf"
-   // val strain
+    val strain
 
   script:
   """
@@ -255,7 +255,6 @@ process kb_index{
     path fasta.fa
     path output.na
     val strain
-  
 
   script:
   """
@@ -306,26 +305,22 @@ workflow make_references {
     vci
   )
   gtf_rename = rename_gtf(gtf_convert)
+
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
-  emit:
-    fasta_cat.out
-    gtf_cat.out
-
+  
 
 }
 
 workflow make_index {
   take:
-    fasta_cat
-    gtf_cat
-
+    references_ch
 
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        fasta_cat.out
-        gtf_cat.out
+        fasta_cat,
+        gtf_cat
       )
     } else {
       error "ATAC currently unsupported"
@@ -333,7 +328,6 @@ workflow make_index {
 }
 
 workflow {
-  refs = make_references()
-  make_index(refs
-  )
+  references_ch = make_references()
+  make_index(references_ch)
 }
