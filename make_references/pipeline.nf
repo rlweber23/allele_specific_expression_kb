@@ -169,8 +169,7 @@ process cat_fastas{
     val strain
 
   output:
-    path "mm39_B6J_${strain}_genome.fa"
-    val strain
+    tuple path("mm39_B6J_${strain}_genome.fa"), val(strain)
     
   script:
   """
@@ -231,8 +230,7 @@ process cat_gtfs{
     val strain
 
   output:
-    path "mm39_B6J_${strain}_gtf.gtf"
-    val strain
+    tuple path("mm39_B6J_${strain}_gtf.gtf"), val(strain)
 
   script:
   """
