@@ -248,12 +248,12 @@ process kb_index{
     val strain
 
   output:
-    path index.idx
-    path t2g.t2g
-    path c1.c1
-    path c2.c2
-    path fasta.fa
-    path output.na
+    path "index.idx"
+    path "t2g.t2g"
+    path "c1.c1"
+    path "c2.c2"
+    path "fasta.fa"
+    path "output.na"
     val strain
 
   script:
