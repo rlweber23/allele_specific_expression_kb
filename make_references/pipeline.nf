@@ -242,7 +242,7 @@ process kb_index{
   storeDir "references/${strain}/kb_index/"
     
   input: 
-    tuple path(fasta), path(gtf), val(strain)
+    tuple val(strain), path(fasta), path(gtf)
 
   output:
     path "index.idx"
@@ -263,7 +263,7 @@ process kb_index{
         -c2 c2.c2 \
         -f1 fasta.fa \
         -f2 output.na \
-        --tmp ${strain}tmp \
+        --tmp "${strain}tmp" \
         ${fasta} \
         ${gtf}
   """
@@ -308,25 +308,23 @@ workflow make_references {
   ref_channel = fasta_cat.join(gtf_cat, by: [1]).view()
 
   emit:
-    ref_channel[0]
-    ref_channel[1]
-    ref_channel[2]
+    ref_channel
 }
 
 workflow make_index {
   take:
-    // ref_channel
-    strain_cat
-    gtf_cat
-    strain
+    ref_channel
+    // strain_cat
+    // gtf_cat
+    // strain
 
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        // ref_channel
-        fasta_cat,
-        gtf_cat,
-        strain
+        ref_channel
+        // fasta_cat,
+        // gtf_cat,
+        // strain
       )
     } else {
       error "ATAC currently unsupported"
