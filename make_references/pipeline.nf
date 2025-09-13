@@ -309,7 +309,7 @@ workflow make_references {
 
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
-  ref_channel = fasta_cat.join(gtf_cat, by: [1])).view()
+  ref_channel = fasta_cat.join(gtf_cat, by: [1]).view()
 
   emit:
     ref_channel
