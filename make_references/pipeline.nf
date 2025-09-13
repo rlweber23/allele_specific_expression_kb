@@ -324,7 +324,7 @@ workflow make_index {
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        fasta_cat.out,
+        fasta_cat.out
         gtf_cat.out
       )
     } else {
