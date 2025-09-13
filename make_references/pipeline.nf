@@ -244,7 +244,8 @@ process kb_index{
     
   input: 
     path(fasta)
-     path(gtf), val(strain)
+    path(gtf)
+    val(strain)
 
   output:
     path "index.idx"
