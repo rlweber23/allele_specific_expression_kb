@@ -308,6 +308,10 @@ workflow make_references {
 
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
+  emit:
+    fasta_cat
+    gtf_cat
+
 
 
 }
