@@ -310,7 +310,8 @@ workflow make_references {
 
   emit:
     fasta_cat
-    gtf_cat
+    gtf_cat[0]
+    gtf_cat[1]
 
 
 
