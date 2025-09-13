@@ -309,23 +309,23 @@ workflow make_references {
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
   emit:
-    fasta_out = fasta_cat
-    gtf_out   = gtf_cat
+    fasta_cat.out
+    gtf_cat.out
 
 
 }
 
 workflow make_index {
   take:
-    fasta_ch
-    gtf_ch
+    fasta_cat.out
+    gtf_cat.out
 
 
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        fasta_cat,
-        gtf_cat
+        fasta_cat.out,
+        gtf_cat.out
       )
     } else {
       error "ATAC currently unsupported"
@@ -334,8 +334,6 @@ workflow make_index {
 
 workflow {
   refs = make_references()
-  make_index(
-    refs.fasta_out,
-    refs.gtf_out
+  make_index(refs
   )
 }
