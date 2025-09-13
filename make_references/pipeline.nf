@@ -308,22 +308,25 @@ workflow make_references {
   ref_channel = fasta_cat.join(gtf_cat, by: [1]).view()
 
   emit:
-    ref_channel
+    ref_channel[0]
+    ref_channel[1]
+    ref_channel[2]
 }
 
 workflow make_index {
   take:
-    ref_channel
-    //gtf_cat
-    //strain
+    // ref_channel
+    strain_cat
+    gtf_cat
+    strain
 
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        ref_channel
-        //fasta_cat,
-        //gtf_cat,
-        //strain
+        // ref_channel
+        fasta_cat,
+        gtf_cat,
+        strain
       )
     } else {
       error "ATAC currently unsupported"
