@@ -319,7 +319,9 @@ workflow make_references {
 
 workflow make_index {
   take:
-    references_ch
+    fasta_cat
+    gtf_cat
+    strain
 
   main:
     if (params.readType == 'RNA') {
