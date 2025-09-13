@@ -317,8 +317,8 @@ workflow make_references {
 
 workflow make_index {
   take:
-    fasta_cat.out
-    gtf_cat.out
+    fasta_cat
+    gtf_cat
 
 
   main:
