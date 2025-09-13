@@ -308,7 +308,7 @@ workflow make_references {
 
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
-  
+
 
 }
 
@@ -328,6 +328,6 @@ workflow make_index {
 }
 
 workflow {
-  references_ch = make_references()
-  make_index(references_ch)
+  make_references()
+  make_index(make_references.out)
 }
