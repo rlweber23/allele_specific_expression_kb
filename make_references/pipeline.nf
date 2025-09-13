@@ -231,7 +231,7 @@ process cat_gtfs{
 
   output:
     path "mm39_B6J_${strain}_gtf.gtf"
-    val strain
+   // val strain
 
   script:
   """
