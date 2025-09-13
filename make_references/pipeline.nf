@@ -322,9 +322,10 @@ workflow make_index {
   main:
     if (params.readType == 'RNA') {
       kb_index(
-        fasta_cat,
-        gtf_cat,
-        strain
+        ref_channel
+        //fasta_cat,
+        //gtf_cat,
+        //strain
       )
     } else {
       error "ATAC currently unsupported"
