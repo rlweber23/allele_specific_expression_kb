@@ -170,6 +170,7 @@ process cat_fastas{
 
   output:
     path "mm39_B6J_${strain}_genome.fa"
+    val strain
     
   script:
   """
@@ -308,17 +309,17 @@ workflow make_references {
 
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
+  ref_channel = fasta_cat.join(gtf_cat, by: [1])).view()
+
   emit:
-    fasta_cat
-    gtf_cat[0]
-    gtf_cat[1]
+    ref_channel
 }
 
 workflow make_index {
   take:
-    fasta_cat
-    gtf_cat
-    strain
+    ref_channel
+    //gtf_cat
+    //strain
 
   main:
     if (params.readType == 'RNA') {
