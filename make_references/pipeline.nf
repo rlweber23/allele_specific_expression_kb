@@ -243,7 +243,8 @@ process kb_index{
   storeDir "references/${strain}/kb_index/"
     
   input: 
-    path(fasta), path(gtf), val(strain)
+    path(fasta)
+     path(gtf), val(strain)
 
   output:
     path "index.idx"
