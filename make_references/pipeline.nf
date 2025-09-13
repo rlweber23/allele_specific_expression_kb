@@ -243,9 +243,7 @@ process kb_index{
   storeDir "references/${strain}/kb_index/"
     
   input: 
-    path fasta                  
-    path gtf
-    val strain
+    path(fasta), path(gtf), val(strain)
 
   output:
     path "index.idx"
@@ -312,9 +310,6 @@ workflow make_references {
     fasta_cat
     gtf_cat[0]
     gtf_cat[1]
-
-
-
 }
 
 workflow make_index {
