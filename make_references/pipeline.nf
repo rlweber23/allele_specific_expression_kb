@@ -270,7 +270,20 @@ process kb_index{
   """
 }
 
+process chromap_index {
+  storeDir "references/${strain}/chromap_index/"
 
+  input:
+    tuple val(strain), path(fasta)
+
+  output:
+    tuple val(strain), path("chromap_index"), emit: chromap_index_files
+
+  script:
+  """
+    chromap -i  -r ${fasta} -o ${strain}_chromap_index
+  """
+}
 
 
 samples_csv_ch = Channel.fromPath( params.file_csv )
@@ -451,19 +464,18 @@ workflow make_index {
 
   main:
     if (params.readType == 'RNA') {
-      kb_index_ch = kb_index(
-        ref_channel
-      )
-    } else {
-      error "ATAC currently unsupported"
-    }
+      index_ch = kb_index(ref_channel)
+    } else if (params.readType == 'ATAC') {
+      index_ch = chromap_index(ref_channel)
+      }
+
   emit:
-    kb_index_ch
+    index_ch
 }
 
 workflow RNA_ASE{
   take:
-  kb_index_ch
+  index_ch
 
   main:
     config_ch = Channel
@@ -487,7 +499,7 @@ workflow RNA_ASE{
     // 2) one kb_count run per tuple, with real file paths
     //
 
-    kb_count_channel = config_ch.combine(kb_index_ch, by: [0]).view()
+    kb_count_channel = config_ch.combine(index_ch, by: [0]).view()
 
 
     subpool_dirs = kb_count(kb_count_channel)
@@ -505,5 +517,9 @@ workflow RNA_ASE{
 workflow {
   make_references()
   make_index(make_references.out)
-  RNA_ASE(make_index.out)
+
+  if (params.readType == 'RNA') {
+    RNA_ASE(make_index.out)
+    } 
+  
 }
