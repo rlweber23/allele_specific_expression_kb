@@ -245,13 +245,14 @@ process kb_index{
     tuple val(strain), path(fasta), path(gtf)
 
   output:
-    path "index.idx"
-    path "t2g.t2g"
-    path "c1.c1"
-    path "c2.c2"
-    path "fasta.fa"
-    path "output.na"
-    val strain
+    tuple val(strain), path("index.idx"), path("t2g.t2g"), path("c1.c1"), path("c2.c2"), path("fasta.fa"), path("output.na"), emit: kb_index_files
+    // path "index.idx"
+    // path "t2g.t2g"
+    // path "c1.c1"
+    // path "c2.c2"
+    // path "fasta.fa"
+    // path "output.na"
+    // val strain
 
   script:
   """
@@ -268,6 +269,139 @@ process kb_index{
         ${gtf}
   """
 }
+
+
+
+
+samples_csv_ch = Channel.fromPath( params.file_csv )
+
+
+process kb_count {
+  tag        { "${strain}-${subpool}" }
+  publishDir { "kb_count/${plate}/${strain}" }, mode: 'copy'
+
+  input:
+    // tuple val(strain), val(subpool), val(plate), val(pairs)
+    tuple val(strain), val(subpool), val(plate), val(pairs), path("index.idx"), path("t2g.t2g"), path("c1.c1"), path("c2.c2"), path("fasta.fa"), path("output.na")
+
+
+  output:
+    tuple val(strain), val(subpool), val(plate), path("${subpool}"), emit: subpool_dir
+
+  script:
+  """
+    set -euo pipefail
+
+    # make subdirs (nova1, nova2, …) inside the work dir
+    for fq in ${pairs.join(' ')}; do
+      subdir=\$(basename \$(dirname \"\$fq\"))
+      mkdir -p \"\$subdir\"
+      ln -s \"\$fq\" \"\$subdir/\$(basename \"\$fq\")\"
+    done
+
+    #  build the exact list of links in the order we got them
+    files_to_use=""
+    for fq in ${pairs.join(' ')}; do
+      subdir=\$(basename \$(dirname \"\$fq\"))
+      files_to_use="\$files_to_use \$subdir/\$(basename \"\$fq\")"
+    done
+
+
+    # finally call kb count on those links
+    kb count \
+      --h5ad \
+      --gene-names \
+      --sum=total \
+      --strand=forward \
+      -r ${params.kb_replacement_bcs} \
+      -w ${params.kb_onlist} \
+      --workflow=nac \
+      -g t2g.t2g \
+      -x SPLIT-SEQ \
+      -i index.idx \
+      -t 4 \
+      -c1 c1.c1 \
+      -c2 c2.c2 \
+      -o ${subpool} \
+      \$files_to_use
+  """
+}
+
+
+
+process make_adata {
+
+  input:
+    tuple val(strain), val(subpool), val(plate), path(subpool_dir)
+
+  output:
+    tuple val(strain), val(subpool), val(plate), path("${subpool_dir.getName()}.h5ad"), emit: h5ad
+
+  script:
+  """
+  python ${params.make_adata_script} \
+    --directory ${subpool_dir} \
+    --output ${subpool_dir.getName()}.h5ad
+  """
+}
+
+
+process cellbender {
+
+  errorStrategy { 
+    task.attempt <= 6 ? 'retry'  : 'ignore' 
+  }
+
+  publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
+
+  input:
+    tuple val(strain), val(subpool), val(plate), path(total_adata)
+
+  output:
+    tuple val(strain), val(subpool), val(plate),
+      path("${total_adata.getName()}_cellbender_filtered.h5"),
+      path("${total_adata.getName()}_cellbender_report.html"),
+      emit: cb_outputs
+
+
+  script:
+  """
+    cellbender remove-background \
+        --input ${total_adata} \
+        --output ${total_adata}_cellbender.h5 \
+        --total-droplets-included 200000 \
+        --learning-rate 0.000025 \
+        --expected-cells 67000 \
+        --cuda
+  """
+}
+
+
+process cb_h5_to_h5ad {
+  publishDir { "cellbender/${plate}/${strain}/" }, mode: 'copy'
+
+  input:
+    tuple val(strain), val(subpool), val(plate), path(cb_h5), path(_)
+
+
+  output:
+    tuple val(strain), val(subpool), val(plate),
+      path("${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}"), emit: cb_h5ad
+
+  script:
+  """
+  python ${params.cb_h5_to_h5ad_script} \
+    --input ${cb_h5} \
+    --output ${cb_h5.getName().replaceFirst(/\.h5$/, '.h5ad')}
+  """
+}
+
+
+
+
+
+
+
 
 
 workflow make_references {
@@ -305,7 +439,7 @@ workflow make_references {
 
   gtf_cat = cat_gtfs(gtf_nochr_ch, gtf_rename)
 
-  ref_channel = fasta_cat.join(gtf_cat, by: [1]).view()
+  ref_channel = fasta_cat.join(gtf_cat, by: [1])//.view()
 
   emit:
     ref_channel
@@ -314,24 +448,62 @@ workflow make_references {
 workflow make_index {
   take:
     ref_channel
-    // strain_cat
-    // gtf_cat
-    // strain
 
   main:
     if (params.readType == 'RNA') {
-      kb_index(
+      kb_index_ch = kb_index(
         ref_channel
-        // fasta_cat,
-        // gtf_cat,
-        // strain
       )
     } else {
       error "ATAC currently unsupported"
     }
+  emit:
+    kb_index_ch
 }
+
+workflow RNA_ASE{
+  take:
+  kb_index_ch
+
+  main:
+    config_ch = Channel
+      .fromPath(params.file_csv)
+      .splitCsv(header:true)
+      .collect()
+      .flatMap { rowsList ->
+        def groups = rowsList.groupBy { [ it.strain, it.subpool, it.plate ] }
+        groups.collect { key, groupRows ->
+          def (strain, subpool, plate) = key
+          groupRows = groupRows.sort { it.lane }   // simple lex‐sort on "L001","L002"
+          def pairs = groupRows.collectMany { row ->
+            [ file(row.fastq_r1), file(row.fastq_r2) ]
+          }
+          tuple(strain, subpool, plate, pairs)
+        }
+      }
+
+    config_ch//.view()    
+    //
+    // 2) one kb_count run per tuple, with real file paths
+    //
+
+    kb_count_channel = config_ch.combine(kb_index_ch, by: [0]).view()
+
+
+    subpool_dirs = kb_count(kb_count_channel)
+
+    //
+    // 3) downstream as before
+    //
+    total_adata = make_adata(subpool_dirs)
+    cellbender_outputs = cellbender(total_adata)
+    cb_h5_to_h5ad(cellbender_outputs.cb_outputs)
+
+}
+
 
 workflow {
   make_references()
   make_index(make_references.out)
+  RNA_ASE(make_index.out)
 }
