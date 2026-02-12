@@ -1,4 +1,0 @@
-2025-07-24 14:45:25,471:iu_debug:	submission=False: In non-submission mode.
-2025-07-24 14:45:25,622:iu_debug:	>>>>>>GET IGVFFI9282QLXO From DACC with URL https://api.data.igvf.org/IGVFFI9282QLXO/?format=json
-2025-07-24 14:45:26,236:iu_debug:	GET file IGVFFI9282QLXO from URL https://api.data.igvf.org/reference-files/IGVFFI9282QLXO/@@download/IGVFFI9282QLXO.fasta.gz.
-2025-07-24 14:45:26,236:iu_debug:	File size: 870,543,764 bytes.

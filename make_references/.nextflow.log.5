@@ -1,0 +1,616 @@
+Feb-06 14:04:03.412 [main] DEBUG nextflow.cli.Launcher - $> nextflow run pipeline.nf
+Feb-06 14:04:03.496 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.5
+Feb-06 14:04:03.516 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/data/homezvol1/weberrl/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.4,nf-tower@1.9.3,nf-wave@1.7.4
+Feb-06 14:04:03.542 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Feb-06 14:04:03.543 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Feb-06 14:04:03.546 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Feb-06 14:04:03.556 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Feb-06 14:04:03.576 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/nextflow.config
+Feb-06 14:04:03.579 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/nextflow.config
+Feb-06 14:04:03.627 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /data/homezvol1/weberrl/.nextflow/secrets/store.json
+Feb-06 14:04:03.631 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@18fdb6cf] - activable => nextflow.secret.LocalSecretsProvider@18fdb6cf
+Feb-06 14:04:03.637 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Feb-06 14:04:04.092 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Feb-06 14:04:04.106 [main] DEBUG nextflow.cli.CmdRun - Launching `pipeline.nf` [agitated_montalcini] DSL2 - revision: f0380c9f8a
+Feb-06 14:04:04.108 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Feb-06 14:04:04.108 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Feb-06 14:04:04.160 [main] DEBUG nextflow.Session - Session UUID: 79d438d5-fcf6-4993-8b5d-1e126feb101e
+Feb-06 14:04:04.160 [main] DEBUG nextflow.Session - Run name: agitated_montalcini
+Feb-06 14:04:04.160 [main] DEBUG nextflow.Session - Executor pool size: 3
+Feb-06 14:04:04.168 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Feb-06 14:04:04.173 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-06 14:04:04.191 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.5 build 5935
+  Created: 04-03-2025 17:55 UTC (09:55 PDT)
+  System: Linux 5.14.0-570.39.1.el9_6.x86_64
+  Runtime: Groovy 4.0.23 on OpenJDK 64-Bit Server VM 23.0.2-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 967540@hpc3-23-04 [10.240.59.81]
+  CPUs: 3 - Mem: 250.8 GB (163.2 GB) - Swap: 4 GB (4 GB)
+Feb-06 14:04:04.213 [main] DEBUG nextflow.Session - Work-dir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work [fhgfs]
+Feb-06 14:04:04.214 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/bin
+Feb-06 14:04:04.223 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Feb-06 14:04:04.231 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Feb-06 14:04:04.256 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Feb-06 14:04:04.264 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 4; maxThreads: 1000
+Feb-06 14:04:04.338 [main] DEBUG nextflow.Session - Session start
+Feb-06 14:04:05.176 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Feb-06 14:04:05.263 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.263 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.272 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+Feb-06 14:04:05.302 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+Feb-06 14:04:05.304 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: slurm)
+Feb-06 14:04:05.307 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+Feb-06 14:04:05.375 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.375 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.384 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.384 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.389 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.389 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.393 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.393 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.437 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.437 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.439 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [0]
+Feb-06 14:04:05.451 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.451 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.459 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.459 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.465 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.465 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.481 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.481 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.488 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.488 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.494 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.494 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.499 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.499 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.531 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-06 14:04:05.531 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-06 14:04:05.534 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: make_references:remove_chr_fasta, make_references:remove_chr_gtf, download_igvf_fasta, vcf2vci, remove_chr_gtf, make_references:rename_fasta, make_references:cat_gtfs, convert_gtf, patch_fasta, make_references:rename_gtf, make_references:curl_vcf, rename_fasta, download_igvf_gtf, cat_gtfs, make_references:download_igvf_gtf, make_references:vcf2vci, curl_vcf, make_references:cat_fastas, rename_gtf, make_index:kb_index, transform_fasta, make_references:transform_fasta, remove_chr_fasta, kb_index, make_references:download_igvf_fasta, make_references:patch_fasta, cat_fastas, make_references:convert_gtf
+Feb-06 14:04:05.549 [main] WARN  nextflow.Session - There's no process matching config selector: kb_count
+Feb-06 14:04:05.568 [main] WARN  nextflow.Session - There's no process matching config selector: make_adata
+Feb-06 14:04:05.568 [main] WARN  nextflow.Session - There's no process matching config selector: cellbender
+Feb-06 14:04:05.568 [main] DEBUG nextflow.Session - Igniting dataflow network (16)
+Feb-06 14:04:05.569 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:curl_vcf
+Feb-06 14:04:05.569 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:download_igvf_fasta
+Feb-06 14:04:05.569 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:remove_chr_fasta
+Feb-06 14:04:05.569 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:download_igvf_gtf
+Feb-06 14:04:05.569 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:remove_chr_gtf
+Feb-06 14:04:05.587 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:vcf2vci
+Feb-06 14:04:05.587 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:vcf2vci
+Feb-06 14:04:05.589 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:patch_fasta
+Feb-06 14:04:05.590 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:transform_fasta
+Feb-06 14:04:05.590 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:rename_fasta
+Feb-06 14:04:05.590 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:cat_fastas
+Feb-06 14:04:05.592 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:convert_gtf
+Feb-06 14:04:05.592 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:rename_gtf
+Feb-06 14:04:05.592 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:cat_gtfs
+Feb-06 14:04:05.592 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_index:kb_index
+Feb-06 14:04:05.592 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_bee4c27e52bc792a: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/pipeline.nf
+Feb-06 14:04:05.593 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Feb-06 14:04:05.593 [main] DEBUG nextflow.Session - Session await
+Feb-06 14:04:05.734 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process make_references:download_igvf_gtf > jobId: 48096333; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/be/2154cdb56e3197a5b6b7eaad657b8f
+Feb-06 14:04:05.735 [Task submitter] INFO  nextflow.Session - [be/2154cd] Submitted process > make_references:download_igvf_gtf
+Feb-06 14:04:05.760 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process make_references:curl_vcf > jobId: 48096334; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/3d/7e6f70049fb94692b7ab3faf482d21
+Feb-06 14:04:05.760 [Task submitter] INFO  nextflow.Session - [3d/7e6f70] Submitted process > make_references:curl_vcf
+Feb-06 14:04:05.780 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process make_references:download_igvf_fasta > jobId: 48096335; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/7c/eb0d1fb9658cbf140909d27ad2d75e
+Feb-06 14:04:05.780 [Task submitter] INFO  nextflow.Session - [7c/eb0d1f] Submitted process > make_references:download_igvf_fasta
+Feb-06 14:05:15.316 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 48096333; id: 1; name: make_references:download_igvf_gtf; status: COMPLETED; exit: 0; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/be/2154cdb56e3197a5b6b7eaad657b8f started: 1770415450312; exited: 2026-02-06T22:05:14Z; ]
+Feb-06 14:05:15.317 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-06 14:05:15.328 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `make_references:download_igvf_gtf` is unable to find [UnixPath]: `/dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/references/mm39_IGVF.gtf.gz` (pattern: `mm39_IGVF.gtf.gz`)
+Feb-06 14:05:15.337 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=make_references:download_igvf_gtf; work-dir=/dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/be/2154cdb56e3197a5b6b7eaad657b8f
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `mm39_IGVF.gtf.gz` expected by process `make_references:download_igvf_gtf`
+Feb-06 14:05:15.371 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'make_references:download_igvf_gtf'
+
+Caused by:
+  Missing output file(s) `mm39_IGVF.gtf.gz` expected by process `make_references:download_igvf_gtf`
+
+
+Command executed:
+
+  wget https://api.data.igvf.org/reference-files/IGVFFI4777RDZK/@@download/IGVFFI4777RDZK.gtf.gz
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Command error:
+   36600K .......... .......... .......... .......... .......... 94% 2.47M 4s
+   36650K .......... .......... .......... .......... .......... 94% 21.6M 4s
+   36700K .......... .......... .......... .......... .......... 94% 3.13M 4s
+   36750K .......... .......... .......... .......... .......... 94% 4.83M 3s
+   36800K .......... .......... .......... .......... .......... 94% 17.9M 3s
+   36850K .......... .......... .......... .......... .......... 94% 2.79M 3s
+   36900K .......... .......... .......... .......... .......... 94% 6.68M 3s
+   36950K .......... .......... .......... .......... .......... 95% 15.3M 3s
+   37000K .......... .......... .......... .......... .......... 95% 2.14M 3s
+   37050K .......... .......... .......... .......... .......... 95% 18.2M 3s
+   37100K .......... .......... .......... .......... .......... 95% 25.3M 3s
+   37150K .......... .......... .......... .......... .......... 95% 2.10M 3s
+   37200K .......... .......... .......... .......... .......... 95% 18.9M 3s
+   37250K .......... .......... .......... .......... .......... 95% 7.99M 3s
+   37300K .......... .......... .......... .......... .......... 96% 2.53M 2s
+   37350K .......... .......... .......... .......... .......... 96% 13.8M 2s
+   37400K .......... .......... .......... .......... .......... 96% 2.35M 2s
+   37450K .......... .......... .......... .......... .......... 96% 11.2M 2s
+   37500K .......... .......... .......... .......... .......... 96% 20.8M 2s
+   37550K .......... .......... .......... .......... .......... 96% 2.19M 2s
+   37600K .......... .......... .......... .......... .......... 96% 17.2M 2s
+   37650K .......... .......... .......... .......... .......... 96% 20.3M 2s
+   37700K .......... .......... .......... .......... .......... 97% 2.17M 2s
+   37750K .......... .......... .......... .......... .......... 97% 15.1M 2s
+   37800K .......... .......... .......... .......... .......... 97% 7.80M 2s
+   37850K .......... .......... .......... .......... .......... 97% 2.56M 2s
+   37900K .......... .......... .......... .......... .......... 97% 20.7M 2s
+   37950K .......... .......... .......... .......... .......... 97% 8.26M 1s
+   38000K .......... .......... .......... .......... .......... 97% 1.06M 1s
+   38050K .......... .......... .......... .......... .......... 97%  102M 1s
+   38100K .......... .......... .......... .......... .......... 98%  105M 1s
+   38150K .......... .......... .......... .......... .......... 98% 13.9M 1s
+   38200K .......... .......... .......... .......... .......... 98% 2.17M 1s
+   38250K .......... .......... .......... .......... .......... 98% 11.0M 1s
+   38300K .......... .......... .......... .......... .......... 98% 2.17M 1s
+   38350K .......... .......... .......... .......... .......... 98% 10.5M 1s
+   38400K .......... .......... .......... .......... .......... 98% 2.35M 1s
+   38450K .......... .......... .......... .......... .......... 98% 8.14M 1s
+   38500K .......... .......... .......... .......... .......... 99% 3.73M 1s
+   38550K .......... .......... .......... .......... .......... 99% 3.30M 0s
+   38600K .......... .......... .......... .......... .......... 99% 2.34M 0s
+   38650K .......... .......... .......... .......... .......... 99% 8.21M 0s
+   38700K .......... .......... .......... .......... .......... 99% 2.75M 0s
+   38750K .......... .......... .......... .......... .......... 99% 5.37M 0s
+   38800K .......... .......... .......... .......... .......... 99% 7.99M 0s
+   38850K .......... .......... .......... .......... .......... 99% 2.28M 0s
+   38900K                                                       100%  663G=61s
+  
+  2026-02-06 14:05:14 (643 KB/s) - ‘IGVFFI4777RDZK.gtf.gz’ saved [39833956/39833956]
+
+Work dir:
+  /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/be/2154cdb56e3197a5b6b7eaad657b8f
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Feb-06 14:05:15.384 [TaskFinalizer-1] DEBUG nextflow.Session - Session aborted -- Cause: Missing output file(s) `mm39_IGVF.gtf.gz` expected by process `make_references:download_igvf_gtf`
+Feb-06 14:05:15.398 [TaskFinalizer-1] DEBUG nextflow.Session - The following nodes are still active:
+[process] make_references:remove_chr_fasta
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: fasta_file
+  port 1: (cntrl) -     ; channel: $
+
+[process] make_references:vcf2vci
+  status=ACTIVE
+  port 0: (value) bound ; channel: __$eachinparam<0>
+  port 1: (value) OPEN  ; channel: vcf_file
+  port 2: (value) OPEN  ; channel: fasta_file_nchr
+  port 3: (cntrl) -     ; channel: $
+
+[process] make_references:patch_fasta
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: fasta
+  port 1: (queue) OPEN  ; channel: vci
+  port 2: (queue) OPEN  ; channel: vci_index
+  port 3: (queue) OPEN  ; channel: strain
+  port 4: (cntrl) -     ; channel: $
+
+[process] make_references:transform_fasta
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: patch_fasta
+  port 1: (queue) OPEN  ; channel: vci
+  port 2: (queue) OPEN  ; channel: vci_index
+  port 3: (queue) OPEN  ; channel: strain
+  port 4: (cntrl) -     ; channel: $
+
+[process] make_references:rename_fasta
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: unnamed_fasta
+  port 1: (queue) OPEN  ; channel: strain
+  port 2: (cntrl) -     ; channel: $
+
+[process] make_references:cat_fastas
+  status=ACTIVE
+  port 0: (value) OPEN  ; channel: fasta
+  port 1: (queue) OPEN  ; channel: renamed_fasta
+  port 2: (queue) OPEN  ; channel: strain
+  port 3: (cntrl) -     ; channel: $
+
+[process] make_index:kb_index
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+Feb-06 14:05:15.401 [TaskFinalizer-1] DEBUG nextflow.Session - 
+Thread[#10,Finalizer,8,system]
+  java.base@23.0.2-internal/java.lang.Object.wait0(Native Method)
+  java.base@23.0.2-internal/java.lang.Object.wait(Object.java:378)
+  java.base@23.0.2-internal/java.lang.Object.wait(Object.java:352)
+  java.base@23.0.2-internal/java.lang.ref.NativeReferenceQueue.await(NativeReferenceQueue.java:48)
+  java.base@23.0.2-internal/java.lang.ref.ReferenceQueue.remove0(ReferenceQueue.java:166)
+  java.base@23.0.2-internal/java.lang.ref.NativeReferenceQueue.remove(NativeReferenceQueue.java:89)
+  java.base@23.0.2-internal/java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:173)
+
+Thread[#16,Common-Cleaner,8,InnocuousThreadGroup]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1852)
+  java.base@23.0.2-internal/java.lang.ref.ReferenceQueue.await(ReferenceQueue.java:79)
+  java.base@23.0.2-internal/java.lang.ref.ReferenceQueue.remove0(ReferenceQueue.java:151)
+  java.base@23.0.2-internal/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:229)
+  java.base@23.0.2-internal/jdk.internal.ref.CleanerImpl.run(CleanerImpl.java:140)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+  java.base@23.0.2-internal/jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:186)
+
+Thread[#30,Actor Thread 4,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#11,Signal Dispatcher,9,system]
+
+Thread[#43,process reaper,10,InnocuousThreadGroup]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+  java.base@23.0.2-internal/jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:186)
+
+Thread[#46,Actor Thread 13,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#23,Thread-1,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1763)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedBlockingDeque.pollFirst(LinkedBlockingDeque.java:516)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedBlockingDeque.poll(LinkedBlockingDeque.java:684)
+  app//nextflow.util.SimpleAgent.run(SimpleAgent.groovy:89)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf31aa400.invokeVirtual(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3334000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:153)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethodClosure(MetaClassImpl.java:1017)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1207)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//groovy.lang.Closure.call(Closure.java:433)
+  app//groovy.lang.Closure.call(Closure.java:412)
+  app//groovy.lang.Closure.run(Closure.java:505)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#47,Actor Thread 14,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#29,Actor Thread 3,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#25,Task monitor,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1852)
+  app//nextflow.processor.TaskPollingMonitor$_await_closure5.doCall(TaskPollingMonitor.groovy:529)
+  app//nextflow.processor.TaskPollingMonitor$_await_closure5.call(TaskPollingMonitor.groovy)
+  app//nextflow.extension.Bolts.withLock(Bolts.groovy:337)
+  app//nextflow.extension.Bolts.withLock(Bolts.groovy)
+  app//nextflow.processor.TaskPollingMonitor.await(TaskPollingMonitor.groovy:528)
+  app//nextflow.processor.TaskPollingMonitor.pollLoop(TaskPollingMonitor.groovy:453)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf31aa400.invokeVirtual(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3334000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:153)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:645)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:82)
+  app//nextflow.processor.TaskPollingMonitor$_start_closure2.doCall(TaskPollingMonitor.groovy:318)
+  app//nextflow.processor.TaskPollingMonitor$_start_closure2.call(TaskPollingMonitor.groovy)
+  app//groovy.lang.Closure.run(Closure.java:505)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#1,main,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.park(LockSupport.java:371)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:519)
+  java.base@23.0.2-internal/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:4023)
+  java.base@23.0.2-internal/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3969)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1712)
+  app//nextflow.util.Barrier$_awaitCompletion_closure3.doCall(Barrier.groovy:92)
+  app//nextflow.util.Barrier$_awaitCompletion_closure3.call(Barrier.groovy)
+  app//nextflow.extension.Bolts.withLock(Bolts.groovy:337)
+  app//nextflow.extension.Bolts.withLock(Bolts.groovy)
+  app//nextflow.util.Barrier.awaitCompletion(Barrier.groovy:89)
+  app//nextflow.Session.await(Session.groovy:676)
+  app//nextflow.script.ScriptRunner.await(ScriptRunner.groovy:256)
+  app//nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:144)
+  app//nextflow.cli.CmdRun.run(CmdRun.groovy:376)
+  app//nextflow.cli.Launcher.run(Launcher.groovy:503)
+  app//nextflow.cli.Launcher.main(Launcher.groovy:658)
+
+Thread[#26,Task submitter,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.park(LockSupport.java:371)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:519)
+  java.base@23.0.2-internal/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:4023)
+  java.base@23.0.2-internal/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3969)
+  java.base@23.0.2-internal/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1712)
+  app//nextflow.processor.TaskPollingMonitor.awaitTasks(TaskPollingMonitor.groovy:388)
+  app//nextflow.processor.TaskPollingMonitor.submitLoop(TaskPollingMonitor.groovy:412)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf31aa400.invokeVirtual(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3334000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:153)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethodClosure(MetaClassImpl.java:1017)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1207)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//groovy.lang.Closure.call(Closure.java:433)
+  app//groovy.lang.Closure.call(Closure.java:412)
+  app//groovy.lang.Closure.run(Closure.java:505)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#24,AnsiLogObserver,5,main]
+  java.base@23.0.2-internal/java.lang.Object.wait0(Native Method)
+  java.base@23.0.2-internal/java.lang.Object.wait(Object.java:378)
+  app//nextflow.trace.AnsiLogObserver.render0(AnsiLogObserver.groovy:185)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3369000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:154)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethodClosure(MetaClassImpl.java:1017)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1207)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//groovy.lang.Closure.call(Closure.java:433)
+  app//groovy.lang.Closure.call(Closure.java:412)
+  app//groovy.lang.Closure.run(Closure.java:505)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#39,Actor Thread 12,5,main]
+  app//com.esotericsoftware.kryo.util.DefaultClassResolver.<init>(DefaultClassResolver.java:16)
+  app//com.esotericsoftware.kryo.Kryo.<init>(Kryo.java:132)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf301c000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf315dc00.guardWithCatch(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3138800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  app//org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30aa000.invokeStatic(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b3800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.linkToCallSite(Invokers$Holder)
+  app//nextflow.util.KryoHelper.newInstance(SerializationHelper.groovy:87)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf301c000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:153)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1586)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:611)
+  app//org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodN(ScriptBytecodeAdapter.java:182)
+  app//nextflow.util.KryoHelper$1.methodMissing(SerializationHelper.groovy)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30b6400.invokeVirtual(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3334400.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3182800.invokeExact_MT(LambdaForm$MH)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:155)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaClassImpl.invokeMissingMethod(MetaClassImpl.java:924)
+  app//groovy.lang.MetaClassImpl.invokePropertyOrMissing(MetaClassImpl.java:1413)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1335)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30b6c00.invokeInterface(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf317d400.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf31a0800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf315dc00.guardWithCatch(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3138800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  app//org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30aa000.invokeStatic(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b3800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.linkToCallSite(Invokers$Holder)
+  app//nextflow.util.KryoHelper$1.initialValue(SerializationHelper.groovy:60)
+  app//nextflow.util.KryoHelper$1.initialValue(SerializationHelper.groovy)
+  java.base@23.0.2-internal/java.lang.ThreadLocal.setInitialValue(ThreadLocal.java:225)
+  java.base@23.0.2-internal/java.lang.ThreadLocal.get(ThreadLocal.java:194)
+  java.base@23.0.2-internal/java.lang.ThreadLocal.get(ThreadLocal.java:172)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf315dc00.guardWithCatch(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3138800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  app//org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30aa000.invokeStatic(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b3800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.linkToCallSite(Invokers$Holder)
+  app//nextflow.util.KryoHelper.kryo(SerializationHelper.groovy:79)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf301c000.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf315dc00.guardWithCatch(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5c00.guard(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b5800.reinvoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3138800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  app//org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf30aa000.invokeStatic(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf30b3800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.linkToCallSite(Invokers$Holder)
+  app//nextflow.util.KryoHelper.serialize(SerializationHelper.groovy:166)
+  app//nextflow.trace.TraceRecord.serialize(TraceRecord.groovy:573)
+  app//nextflow.cache.CacheDB.writeTaskEntry0(CacheDB.groovy:147)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$DMH/0x00007efbf3394000.invokeVirtual(LambdaForm$DMH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf348b400.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf3182800.invokeExact_MT(LambdaForm$MH)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:155)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:645)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:82)
+  app//nextflow.cache.CacheDB$_putTaskAsync_closure1.doCall(CacheDB.groovy:157)
+  app//nextflow.cache.CacheDB$_putTaskAsync_closure1.call(CacheDB.groovy)
+  app//groovyx.gpars.agent.AgentBase.onMessage(AgentBase.java:102)
+  app//groovyx.gpars.agent.Agent.handleMessage(Agent.java:84)
+  app//groovyx.gpars.agent.AgentCore$1.handleMessage(AgentCore.java:48)
+  app//groovyx.gpars.util.AsyncMessagingCore.run(AsyncMessagingCore.java:132)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#9,Reference Handler,10,system]
+  java.base@23.0.2-internal/java.lang.ref.Reference.waitForReferencePendingList(Native Method)
+  java.base@23.0.2-internal/java.lang.ref.Reference.processPendingReferences(Reference.java:246)
+  java.base@23.0.2-internal/java.lang.ref.Reference$ReferenceHandler.run(Reference.java:208)
+
+Thread[#34,Actor Thread 7,5,main]
+  java.base@23.0.2-internal/jdk.internal.misc.Unsafe.park(Native Method)
+  java.base@23.0.2-internal/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:410)
+  java.base@23.0.2-internal/java.util.concurrent.LinkedTransferQueue$DualNode.await(LinkedTransferQueue.java:452)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue$Transferer.xferLifo(SynchronousQueue.java:194)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.xfer(SynchronousQueue.java:235)
+  java.base@23.0.2-internal/java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:338)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1069)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#42,TaskFinalizer-1,5,main]
+  java.base@23.0.2-internal/java.lang.Thread.dumpThreads(Native Method)
+  java.base@23.0.2-internal/java.lang.Thread.getAllStackTraces(Thread.java:2460)
+  app//nextflow.util.SysHelper.dumpThreads(SysHelper.groovy:188)
+  app//nextflow.Session.abort(Session.groovy:800)
+  app//nextflow.Session.fault(Session.groovy:766)
+  app//nextflow.processor.TaskPollingMonitor.finalizeTask(TaskPollingMonitor.groovy:695)
+  app//nextflow.processor.TaskPollingMonitor.safeFinalizeTask(TaskPollingMonitor.groovy:678)
+  java.base@23.0.2-internal/java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(DirectMethodHandle$Holder)
+  java.base@23.0.2-internal/java.lang.invoke.LambdaForm$MH/0x00007efbf31a9800.invoke(LambdaForm$MH)
+  java.base@23.0.2-internal/java.lang.invoke.Invokers$Holder.invokeExact_MT(Invokers$Holder)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl(DirectMethodHandleAccessor.java:154)
+  java.base@23.0.2-internal/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+  java.base@23.0.2-internal/java.lang.reflect.Method.invoke(Method.java:580)
+  app//org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+  app//groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+  app//groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1333)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1088)
+  app//groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:645)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+  app//org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:82)
+  app//nextflow.processor.TaskPollingMonitor$_checkTaskStatus_lambda8.doCall(TaskPollingMonitor.groovy:668)
+  app//nextflow.processor.TaskPollingMonitor$$Lambda/0x00007efbf3464000.run(Unknown Source)
+  java.base@23.0.2-internal/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+  java.base@23.0.2-internal/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+  java.base@23.0.2-internal/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+  java.base@23.0.2-internal/java.lang.Thread.runWith(Thread.java:1588)
+  java.base@23.0.2-internal/java.lang.Thread.run(Thread.java:1575)
+
+Thread[#17,Notification Thread,9,system]
+
+Feb-06 14:05:15.405 [main] DEBUG nextflow.Session - Session await > all processes finished
+Feb-06 14:05:15.405 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: slurm) - terminating tasks monitor poll loop
+Feb-06 14:05:15.405 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Feb-06 14:05:15.412 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (2)
+Feb-06 14:05:15.429 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=2; succeedDuration=0ms; failedDuration=1m 5s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=3; peakCpus=3; peakMemory=0; ]
+Feb-06 14:05:15.606 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Feb-06 14:05:15.618 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -1,0 +1,137 @@
+Feb-09 16:46:01.648 [main] DEBUG nextflow.cli.Launcher - $> nextflow run pipeline.nf -resume
+Feb-09 16:46:01.920 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.5
+Feb-09 16:46:01.969 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/data/homezvol1/weberrl/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.4,nf-tower@1.9.3,nf-wave@1.7.4
+Feb-09 16:46:02.104 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Feb-09 16:46:02.105 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Feb-09 16:46:02.108 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Feb-09 16:46:02.148 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Feb-09 16:46:02.178 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/nextflow.config
+Feb-09 16:46:02.180 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/nextflow.config
+Feb-09 16:46:02.264 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /data/homezvol1/weberrl/.nextflow/secrets/store.json
+Feb-09 16:46:02.272 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@18fdb6cf] - activable => nextflow.secret.LocalSecretsProvider@18fdb6cf
+Feb-09 16:46:02.283 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Feb-09 16:46:03.096 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Feb-09 16:46:03.227 [main] DEBUG nextflow.cli.CmdRun - Launching `pipeline.nf` [dreamy_baekeland] DSL2 - revision: 24799aa019
+Feb-09 16:46:03.229 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Feb-09 16:46:03.229 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Feb-09 16:46:03.447 [main] DEBUG nextflow.Session - Session UUID: 21d11a2d-7197-4f9a-b605-048190713d35
+Feb-09 16:46:03.448 [main] DEBUG nextflow.Session - Run name: dreamy_baekeland
+Feb-09 16:46:03.448 [main] DEBUG nextflow.Session - Executor pool size: 3
+Feb-09 16:46:03.473 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Feb-09 16:46:03.488 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-09 16:46:03.705 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.5 build 5935
+  Created: 04-03-2025 17:55 UTC (09:55 PDT)
+  System: Linux 5.14.0-570.39.1.el9_6.x86_64
+  Runtime: Groovy 4.0.23 on OpenJDK 64-Bit Server VM 23.0.2-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 3789337@hpc3-22-13 [10.240.59.53]
+  CPUs: 3 - Mem: 250.8 GB (160 GB) - Swap: 4 GB (4 GB)
+Feb-09 16:46:03.875 [main] DEBUG nextflow.Session - Work-dir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work [fhgfs]
+Feb-09 16:46:03.876 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/bin
+Feb-09 16:46:03.891 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Feb-09 16:46:03.903 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Feb-09 16:46:03.926 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Feb-09 16:46:03.970 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 4; maxThreads: 1000
+Feb-09 16:46:04.466 [main] DEBUG nextflow.Session - Session start
+Feb-09 16:46:05.172 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Feb-09 16:46:05.285 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.285 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.322 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+Feb-09 16:46:05.331 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+Feb-09 16:46:05.339 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: slurm)
+Feb-09 16:46:05.341 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+Feb-09 16:46:05.412 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.412 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.420 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.420 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.424 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.425 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.428 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.428 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.463 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.463 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.465 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [0]
+Feb-09 16:46:05.476 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.477 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.500 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.500 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.505 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.505 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.522 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.522 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.528 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.528 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.533 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.533 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.539 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.539 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.575 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:kb_index` matches process make_index:kb_index
+Feb-09 16:46:05.577 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Feb-09 16:46:05.577 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Feb-09 16:46:05.580 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: make_references:remove_chr_fasta, make_references:remove_chr_gtf, download_igvf_fasta, vcf2vci, remove_chr_gtf, make_references:rename_fasta, make_references:cat_gtfs, convert_gtf, patch_fasta, make_references:rename_gtf, make_references:curl_vcf, rename_fasta, download_igvf_gtf, cat_gtfs, make_references:download_igvf_gtf, make_references:vcf2vci, curl_vcf, make_references:cat_fastas, rename_gtf, make_index:kb_index, transform_fasta, make_references:transform_fasta, remove_chr_fasta, kb_index, make_references:download_igvf_fasta, make_references:patch_fasta, cat_fastas, make_references:convert_gtf
+Feb-09 16:46:05.581 [main] DEBUG nextflow.Session - Igniting dataflow network (16)
+Feb-09 16:46:05.581 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:curl_vcf
+Feb-09 16:46:05.582 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:download_igvf_fasta
+Feb-09 16:46:05.582 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:remove_chr_fasta
+Feb-09 16:46:05.582 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:download_igvf_gtf
+Feb-09 16:46:05.582 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:remove_chr_gtf
+Feb-09 16:46:05.590 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:vcf2vci
+Feb-09 16:46:05.590 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:vcf2vci
+Feb-09 16:46:05.591 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:patch_fasta
+Feb-09 16:46:05.591 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:transform_fasta
+Feb-09 16:46:05.591 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:rename_fasta
+Feb-09 16:46:05.594 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:cat_fastas
+Feb-09 16:46:05.594 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:convert_gtf
+Feb-09 16:46:05.594 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:rename_gtf
+Feb-09 16:46:05.594 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_references:cat_gtfs
+Feb-09 16:46:05.608 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > make_index:kb_index
+Feb-09 16:46:05.608 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_617e847a497b729a: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/pipeline.nf
+Feb-09 16:46:05.608 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Feb-09 16:46:05.608 [main] DEBUG nextflow.Session - Session await
+Feb-09 16:46:05.647 [Actor Thread 10] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:download_igvf_fasta
+Feb-09 16:46:05.648 [Actor Thread 9] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:curl_vcf
+Feb-09 16:46:05.649 [Actor Thread 8] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:download_igvf_gtf
+Feb-09 16:46:05.680 [Actor Thread 6] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:remove_chr_gtf
+Feb-09 16:46:05.680 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:remove_chr_fasta
+Feb-09 16:46:05.700 [Actor Thread 11] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:vcf2vci (1)
+Feb-09 16:46:05.707 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:convert_gtf (1)
+Feb-09 16:46:05.711 [Actor Thread 6] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:patch_fasta (1)
+Feb-09 16:46:05.712 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:rename_gtf (1)
+Feb-09 16:46:05.720 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:cat_gtfs (1)
+Feb-09 16:46:05.720 [Actor Thread 11] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:transform_fasta (1)
+Feb-09 16:46:05.724 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:rename_fasta (1)
+Feb-09 16:46:05.729 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [skipping] Stored process > make_references:cat_fastas (1)
+Feb-09 16:46:05.948 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process make_index:kb_index (1) > jobId: 48158369; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937
+Feb-09 16:46:05.949 [Task submitter] INFO  nextflow.Session - [50/88aa1d] Submitted process > make_index:kb_index (1)
+Feb-09 16:51:10.352 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 16:56:10.360 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:01:10.369 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:06:10.380 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:11:10.391 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:16:10.400 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:21:10.404 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:26:10.407 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:31:10.411 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:36:10.415 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor slurm > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: RUNNING; exit: -; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: -; ]
+Feb-09 17:40:50.428 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 48158369; id: 14; name: make_index:kb_index (1); status: COMPLETED; exit: 0; error: -; workDir: /dfs9/seyedam-lab/weberrl/crsp_weberrl/ase_pipeline_updated/ASE_kb/make_references/work/50/88aa1de3eb658536f941fc64ad1937 started: 1770684380346; exited: 2026-02-10T01:40:46Z; ]
+Feb-09 17:40:50.429 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Feb-09 17:40:50.435 [main] DEBUG nextflow.Session - Session await > all processes finished
+Feb-09 17:40:55.425 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: slurm) - terminating tasks monitor poll loop
+Feb-09 17:40:55.426 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Feb-09 17:40:55.428 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Feb-09 17:40:55.433 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=54m 30s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=64 GB; ]
+Feb-09 17:40:55.637 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Feb-09 17:40:55.672 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Feb-09 17:40:55.672 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
