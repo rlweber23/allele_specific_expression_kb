@@ -1,4 +1,4 @@
-# Allele-Specific Expression KB
+# Allele-Specific Expression with kb-python
 
 Nextflow pipelines for allele-specific expression (ASE) mapping of mouse snRNA-seq data from the IGVF consortium. Reads are mapped using kb-python against strain-specific concatenated genomes, followed by ambient RNA removal with CellBender.
 
